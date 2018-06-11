@@ -1,0 +1,27 @@
+.text {
+  margin-top:10px!important;
+}
+
+.label {
+  margin-bottom: 20px;
+  font-family: Verdana;
+  color: #A7C7F0 !important;
+  font-family: sans-serif;
+}
+
+.button{
+  margin-top:20px;
+  margin-bottom:10px;
+}
+
+.control-label {
+  font-weight: bold;
+  color: white!important;
+  margin-right:10px;
+}
+
+.form {
+  width: 50%;
+  margin: 10px auto;
+  align-content:center;
+}

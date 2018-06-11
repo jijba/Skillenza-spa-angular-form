@@ -1,0 +1,65 @@
+<h1 class="text-light pull-center" style="text-align:center">{{data.form_name}}</h1>
+<form name="data.form_name" id="data.form_id" class="form-group border border-light form" role="form" ng-submit="submitForm()">
+  <div *ngFor="let field of data.form_fields">
+    <div *ngIf="field.component=='textinput'">
+      <label [for]="field.description" class="control-label text-light label">{{field.label}}</label>
+
+      <input [type]="field.component"
+             [name]="field.description"
+             [(ngModel)]="field.value"
+             [placeholder]="field.description"
+             [disabled]="!field.editable"
+             [class.invalid]="!field.validation" ng-required="field.required" class="text" />
+      </div>
+
+    <div *ngIf="field.component=='select'">
+      <label [for]="field.description" class="control-label text-light label">{{field.label}}</label>
+
+      <select [name]="field.description"
+              [disabled]="!field.editable"
+              [(ngModel)]="field.autoselect" ng-required="field.required" class="text">
+        <option *ngFor="let opt of field.options" [value]="opt" >{{opt}}</option>
+
+      </select>
+    </div>
+    <div *ngIf="field.component=='checkbox'">
+      <label [for]="field.description" class="control-label text-light label">{{field.label}}</label>
+      <div *ngFor="let option of field.options" class="checkbox">
+         <div >
+            <label class="label">
+              <input type="checkbox"
+                     name="option"
+                     value="{{option}}"
+                     ng-checked="field.autoselect.indexOf(option) > -1"
+                     [(ngModel)]="option.checked" />
+              {{option}}
+            </label>
+          </div>
+          
+        </div>
+
+    </div>
+    <div *ngIf="field.component=='radio'" >
+      <label [for]="field.description" class="control-label text-light label">{{field.label}}</label>
+      <div *ngFor="let option of field.options">
+             <label class="label">
+              <input type="radio"
+                     name="{{option}}"
+                     value="{{option}}"
+                     [(ngModel)]="option.checked" />
+              {{option}}
+            </label>
+      </div>
+      </div>
+    <div *ngIf="field.component=='textarea'" >
+      <label [for]="field.description" class="control-label text-light label">{{field.label}}</label>
+
+      <textarea [name]="field.description"
+                [(ngModel)]="field.autofill"
+                [placeholder]="field.description"
+                [disabled]="!field.editable"
+                [class.invalid]="!field.validation" ng-required="field.required" class="text"></textarea>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-light text-primary button" [disabled]="!form.valid" (click)="submitForm()">Submit</button>
+</form>
